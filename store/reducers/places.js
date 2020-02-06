@@ -10,6 +10,7 @@ const reducer = (state = initialState, action) => {
     case ADD_PLACE: {
       const { title } = action.payload;
       const newPlace = new Place(new Date().toString(), title);
+
       return { places: state.places.concat(newPlace) };
     }
     default: {
