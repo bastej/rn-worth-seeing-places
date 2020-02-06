@@ -1,4 +1,5 @@
 import * as FileSystem from "expo-file-system";
+import { insertPlace } from "../../helpers/db";
 
 export const ADD_PLACE = "ADD_PLACE";
 
@@ -11,13 +12,13 @@ export const addPlace = (title, imagePath) => async dispatch => {
       from: imagePath,
       to: newImagePath,
     });
+    const dbResult = await insertPlace(title, newImagePath, "Braclal", 14.4, 14.2);
+    dispatch({
+      type: ADD_PLACE,
+      payload: { id: dbResult.insertId, title, newImagePath },
+    });
   } catch (err) {
     console.log(err);
     throw err;
   }
-
-  dispatch({
-    type: ADD_PLACE,
-    payload: { title, newImagePath },
-  });
 };
