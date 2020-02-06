@@ -3,9 +3,20 @@ import { StyleSheet } from "react-native";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "./store/reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import rootReducer from "./store/reducers";
+
+import { init } from "./helpers/db";
+
+init()
+  .then(() => {
+    console.log("DB Init successs");
+  })
+  .catch(err => {
+    console.log("DB Init failed");
+    console.log(err);
+  });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
