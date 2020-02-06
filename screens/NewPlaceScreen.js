@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Button, TextInput } from "react-native";
 import { useDispatch } from "react-redux";
 
+import ImagePicker from "../components/ImagePicker";
+
 import ColorPalette from "../constants/ColorPalette";
 
 import * as placesActions from "../store/actions/places";
 
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
 
   const dispatch = useDispatch();
 
@@ -16,8 +19,12 @@ const NewPlaceScreen = props => {
   };
 
   const handleCreatePlace = () => {
-    dispatch(placesActions.addPlace(titleValue));
+    dispatch(placesActions.addPlace(titleValue, selectedImage));
     props.navigation.goBack();
+  };
+
+  const imageTaken = imageUrl => {
+    setSelectedImage(imageUrl);
   };
 
   return (
@@ -25,6 +32,7 @@ const NewPlaceScreen = props => {
       <View style={styles.form}>
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} onChangeText={onTitleChange} value={titleValue} />
+        <ImagePicker onImageTaken={imageTaken} />
         <Button
           style={styles.submitButton}
           title="Add Place"
