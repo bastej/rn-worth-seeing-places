@@ -7,6 +7,7 @@ import ImagePicker from "../components/ImagePicker";
 import ColorPalette from "../constants/ColorPalette";
 
 import * as placesActions from "../store/actions/places";
+import LocationPicker from "../components/LocationPicker";
 
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState("");
@@ -33,6 +34,7 @@ const NewPlaceScreen = props => {
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} onChangeText={onTitleChange} value={titleValue} />
         <ImagePicker onImageTaken={imageTaken} />
+        <LocationPicker />
         <Button
           style={styles.submitButton}
           title="Add Place"
