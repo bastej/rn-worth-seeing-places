@@ -21,19 +21,21 @@ const PlacesListScreen = props => {
     <FlatList
       data={places}
       keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <SinglePlace
-          image={item.imageUri}
-          title={item.title}
-          address={null}
-          onSelect={() => {
-            props.navigation.navigate("PlaceDetail", {
-              placeId: item.id,
-              placeTitle: item.title,
-            });
-          }}
-        />
-      )}
+      renderItem={itemData => {
+        return (
+          <SinglePlace
+            image={itemData.item.imageUri}
+            title={itemData.item.title}
+            address={itemData.item.address}
+            onSelect={() => {
+              props.navigation.navigate("PlaceDetail", {
+                placeId: itemData.item.id,
+                placeTitle: itemData.item.title,
+              });
+            }}
+          />
+        );
+      }}
     />
   );
 };

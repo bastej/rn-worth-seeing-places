@@ -1,11 +1,11 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import ENV from "../env";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const MapPreview = props => {
   let imagePreviewUrl;
+
   if (props.location) {
     imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${
       props.location.lat
@@ -13,6 +13,7 @@ const MapPreview = props => {
       props.location.lat
     },${props.location.lng}&key=${ENV().googleApiKey}`;
   }
+
   return (
     <TouchableOpacity onPress={props.onPress} style={{ ...styles.mapPreview, ...props.style }}>
       {props.location ? (

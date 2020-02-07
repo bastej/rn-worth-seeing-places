@@ -5,7 +5,7 @@ import ColorPalette from "../constants/ColorPalette";
 const SinglePlace = props => {
   return (
     <TouchableOpacity onPress={props.onSelect} style={styles.singlePlace}>
-      <Image style={styles.image} source={{ uri: props.image || "test" }} />
+      <Image style={styles.image} source={{ uri: props.image }} />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{props.title}</Text>
         <Text style={styles.address}>{props.address}</Text>
