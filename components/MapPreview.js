@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import ENV from "../env";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const MapPreview = props => {
   let imagePreviewUrl;
@@ -13,23 +14,20 @@ const MapPreview = props => {
     },${props.location.lng}&key=${ENV().googleApiKey}`;
   }
   return (
-    <View style={{ ...styles.mapPreview, ...props.style }}>
+    <TouchableOpacity onPress={props.onPress} style={{ ...styles.mapPreview, ...props.style }}>
       {props.location ? (
         <Image style={styles.mapImage} source={{ uri: imagePreviewUrl }} />
       ) : (
         props.children
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   mapPreview: {
-    marginBottom: 10,
-    width: "100%",
-    height: 150,
-    borderColor: "#ccc",
-    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   mapImage: {
     width: "100%",

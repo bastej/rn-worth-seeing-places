@@ -34,7 +34,7 @@ const NewPlaceScreen = props => {
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} onChangeText={onTitleChange} value={titleValue} />
         <ImagePicker onImageTaken={imageTaken} />
-        <LocationPicker />
+        <LocationPicker navigation={props.navigation} />
         <Button
           style={styles.submitButton}
           title="Add Place"

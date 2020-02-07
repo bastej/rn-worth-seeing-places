@@ -8,7 +8,7 @@ import MapPreview from "../components/MapPreview";
 
 import ColorPalette from "../constants/ColorPalette";
 
-const LocationPicker = () => {
+const LocationPicker = props => {
   const [pickedLoaction, setPickedLocation] = useState();
   const [isLoading, setIsLoading] = useState();
 
@@ -34,8 +34,7 @@ const LocationPicker = () => {
 
     try {
       setIsLoading(true);
-      const location = await Location.getCurrentPositionAsync({ timeout: 500 });
-      console.log(location);
+      const location = await Location.getCurrentPositionAsync({ timeout: 5000 });
       setPickedLocation({ lat: location.coords.latitude, lng: location.coords.longitude });
     } catch (err) {
       Alert.alert("Could not fetch location!", "Please true again or pick a location on the map");
@@ -43,18 +42,25 @@ const LocationPicker = () => {
     setIsLoading(false);
   };
 
+  const handlePickOnMap = () => {
+    props.navigation.navigate("Map");
+  };
+
   return (
     <View style={styles.locationPicker}>
       <View style={styles.mapPreview}>
-        <MapPreview style={styles.mapPreview} location={pickedLoaction}>
+        <MapPreview onPress={handlePickOnMap} style={styles.mapPreview} location={pickedLoaction}>
           {isLoading ? <ActivityIndicator size="large" /> : <Text>No location chosen yet!</Text>}
         </MapPreview>
       </View>
-      <Button
-        title="Get User Location"
-        color={ColorPalette.lightOrange}
-        onPress={handleGetLocation}
-      />
+      <View style={styles.buttonsContainer}>
+        <Button
+          title="Get User Location"
+          color={ColorPalette.lightOrange}
+          onPress={handleGetLocation}
+        />
+        <Button title="Pick on map" color={ColorPalette.lightOrange} onPress={handlePickOnMap} />
+      </View>
     </View>
   );
 };
@@ -62,8 +68,16 @@ const LocationPicker = () => {
 const styles = StyleSheet.create({
   locationPicker: { marginBottom: 15 },
   mapPreview: {
-    justifyContent: "center",
-    alignItems: "center",
+    marginBottom: 10,
+    width: "100%",
+    height: 150,
+    borderColor: "#ccc",
+    borderWidth: 1,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
 });
 
