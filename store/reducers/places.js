@@ -8,15 +8,24 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PLACE: {
-      const { id, title, newImagePath } = action.payload;
-      const newPlace = new Place(id.toString(), title, newImagePath);
+      const { id, title, newImagePath, address, coords } = action.payload;
+      const newPlace = new Place(
+        id.toString(),
+        title,
+        newImagePath,
+        address,
+        coords.lat,
+        coords.lng
+      );
 
       return { places: state.places.concat(newPlace) };
     }
     case SET_PLACES: {
       const { places } = action.payload;
       return {
-        places: places.map(pl => new Place(pl.id.toString(), pl.title, pl.imageUri)),
+        places: places.map(
+          pl => new Place(pl.id.toString(), pl.title, pl.imageUri, pl.address, pl.lat, pl.lng)
+        ),
       };
     }
     default: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Text, StyleSheet, ScrollView, Button, TextInput } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +12,7 @@ import LocationPicker from "../components/LocationPicker";
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
 
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const NewPlaceScreen = props => {
   };
 
   const handleCreatePlace = () => {
-    dispatch(placesActions.addPlace(titleValue, selectedImage));
+    dispatch(placesActions.addPlace(titleValue, selectedImage, selectedLocation));
     props.navigation.goBack();
   };
 
@@ -28,13 +29,17 @@ const NewPlaceScreen = props => {
     setSelectedImage(imageUrl);
   };
 
+  const locationPicked = useCallback(location => {
+    setSelectedLocation(location);
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.form}>
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} onChangeText={onTitleChange} value={titleValue} />
         <ImagePicker onImageTaken={imageTaken} />
-        <LocationPicker navigation={props.navigation} />
+        <LocationPicker navigation={props.navigation} onLocationPicked={locationPicked} />
         <Button
           style={styles.submitButton}
           title="Add Place"
