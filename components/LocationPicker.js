@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, Alert, ActivityIndicator } from "react-native";
 
 import * as Location from "expo-location";
@@ -11,6 +11,14 @@ import ColorPalette from "../constants/ColorPalette";
 const LocationPicker = props => {
   const [pickedLoaction, setPickedLocation] = useState();
   const [isLoading, setIsLoading] = useState();
+
+  const selectedLocation = props.navigation.getParam("selectedLocation");
+
+  useEffect(() => {
+    if (selectedLocation) {
+      setPickedLocation(selectedLocation);
+    }
+  }, [selectedLocation]);
 
   const verifyPermission = async () => {
     const result = await Permissions.askAsync(Permissions.LOCATION);
@@ -50,7 +58,11 @@ const LocationPicker = props => {
     <View style={styles.locationPicker}>
       <View style={styles.mapPreview}>
         <MapPreview onPress={handlePickOnMap} style={styles.mapPreview} location={pickedLoaction}>
-          {isLoading ? <ActivityIndicator size="large" /> : <Text>No location chosen yet!</Text>}
+          {isLoading ? (
+            <ActivityIndicator size="large" color={ColorPalette.green} />
+          ) : (
+            <Text>No location chosen yet!</Text>
+          )}
         </MapPreview>
       </View>
       <View style={styles.buttonsContainer}>
