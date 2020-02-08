@@ -24,12 +24,24 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "pl.sebastiansiatka.worth-seeing-places",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "pl.sebastiansiatka.worth-seeing-places",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-adaptive.png",
         "backgroundColor": "#171717"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "googleMaps": {
+        "apiKey": "AIzaSyAyMq-QwUBWjOB4o5MvHwO5HKYHMxLJTzo"
       }
     }
   }
