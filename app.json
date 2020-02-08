@@ -29,7 +29,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "pl.sebastiansiatka.worth-seeing-places",
+      "package": "pl.sebastiansiatka.worth_seeing_places",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-adaptive.png",
@@ -40,8 +40,10 @@
         "CAMERA",
         "WRITE_EXTERNAL_STORAGE"
       ],
-      "googleMaps": {
-        "apiKey": "AIzaSyAyMq-QwUBWjOB4o5MvHwO5HKYHMxLJTzo"
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAyMq-QwUBWjOB4o5MvHwO5HKYHMxLJTzo"
+        }
       }
     }
   }
