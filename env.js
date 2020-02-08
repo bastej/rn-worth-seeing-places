@@ -3,7 +3,7 @@ const variables = {
     googleApiKey: "AIzaSyDIkCvDsASBHqtbP7lahJ-8Us2rh-vVu9g",
   },
   production: {
-    googleApiKey: "test",
+    googleApiKey: "AIzaSyDIkCvDsASBHqtbP7lahJ-8Us2rh-vVu9g",
   },
 };
 
