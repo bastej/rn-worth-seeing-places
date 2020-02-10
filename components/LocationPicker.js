@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, Alert, ActivityIndicator } from "react-native";
 
+import get from "lodash/get";
+
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
 
@@ -8,11 +10,11 @@ import MapPreview from "../components/MapPreview";
 
 import ColorPalette from "../constants/ColorPalette";
 
-const LocationPicker = props => {
+const LocationPicker = ({ route, ...props }) => {
   const [pickedLoaction, setPickedLocation] = useState();
   const [isLoading, setIsLoading] = useState();
 
-  const selectedLocation = props.navigation.getParam("selectedLocation");
+  const selectedLocation = get(route, "params.selectedLocation");
 
   const { onLocationPicked } = props;
 

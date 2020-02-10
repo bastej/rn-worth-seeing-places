@@ -39,7 +39,17 @@ const NewPlaceScreen = props => {
         <Text style={styles.label}>Title</Text>
         <TextInput style={styles.input} onChangeText={onTitleChange} value={titleValue} />
         <ImagePicker onImageTaken={imageTaken} />
-        <LocationPicker navigation={props.navigation} onLocationPicked={locationPicked} />
+        <LocationPicker
+          navigation={props.navigation}
+          route={props.route}
+          onLocationPicked={locationPicked}
+        />
+        <Button
+          style={styles.submitButton}
+          title="Set available period"
+          color={ColorPalette.lightGreen}
+          onPress={() => props.navigation.navigate("Calendar")}
+        />
         <Button
           style={styles.submitButton}
           title="Add Place"
@@ -51,7 +61,7 @@ const NewPlaceScreen = props => {
   );
 };
 
-NewPlaceScreen.navigationOptions = {
+export const NewPlaceScreenNavOptions = {
   headerTitle: "Add Place",
 };
 

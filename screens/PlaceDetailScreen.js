@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+
 import { useSelector } from "react-redux";
 
 import MapPreview from "../components/MapPreview";
@@ -7,15 +8,13 @@ import MapPreview from "../components/MapPreview";
 import ColorPalette from "../constants/ColorPalette";
 
 const PlaceDetailScreen = props => {
-  const placeId = props.navigation.getParam("placeId");
+  const placeId = props.route.params.placeId;
   const selectedPlace = useSelector(state => state.places.places).find(
     place => place.id === placeId
   );
 
-  const selectedLocation = { lat: selectedPlace.lat, lng: selectedPlace.lng };
-
   const handleShowMap = () => {
-    props.navigation.navigate("Map", { readonly: true, initialLocation: selectedLocation });
+    props.navigation.navigate("Map", { readonly: true, initialLocation: selectedPlace });
   };
 
   return (
@@ -25,15 +24,15 @@ const PlaceDetailScreen = props => {
         <View style={styles.addressContainer}>
           <Text style={styles.address}>{selectedPlace.address}</Text>
         </View>
-        <MapPreview style={styles.mapPreview} location={selectedLocation} onPress={handleShowMap} />
+        <MapPreview style={styles.mapPreview} location={selectedPlace} onPress={handleShowMap} />
       </View>
     </ScrollView>
   );
 };
 
-PlaceDetailScreen.navigationOptions = navData => {
+export const PlaceDetailScreenNavOptions = navData => {
   return {
-    headerTitle: navData.navigation.getParam("placeTitle"),
+    headerTitle: navData.route.params.placeTitle,
   };
 };
 

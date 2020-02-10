@@ -5,6 +5,9 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+
+import { NavigationContainer } from "@react-navigation/native";
+
 import rootReducer from "./store/reducers";
 
 import { init } from "./helpers/db";
@@ -20,12 +23,14 @@ init()
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
-import PlacesNavigator from "./navigation/PlacesNavigator";
+import { PlacesNavigator } from "./navigation/PlacesNavigator";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <PlacesNavigator />
+      <NavigationContainer>
+        <PlacesNavigator />
+      </NavigationContainer>
     </Provider>
   );
 }
