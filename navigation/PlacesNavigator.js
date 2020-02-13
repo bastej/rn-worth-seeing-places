@@ -7,7 +7,7 @@ import PlacesListScreen, { PlacesListScreenNavOptions } from "../screens/PlacesL
 import NewPlaceScreen, { NewPlaceScreenNavOptions } from "../screens/NewPlaceScreen";
 import PlaceDetailScreen, { PlaceDetailScreenNavOptions } from "../screens/PlaceDetailScreen";
 import CalendarScreen, { CalendarScreenNavOptions } from "../screens/CalendarScreen";
-import CalendarDayScreen from "../screens/CalendarDayScreen";
+import CalendarDayScreen, { CalendarDayNavOptions } from "../screens/CalendarDayScreen";
 import MapScreen from "../screens/MapScreen";
 
 import ColorPalette from "../constants/ColorPalette";
@@ -47,7 +47,7 @@ export const PlacesNavigator = () => (
     <PlacesStackNavigator.Screen
       name="CalendarDay"
       component={CalendarDayScreen}
-      options={{ headerTitle: "Calendar Single Day" }}
+      options={CalendarDayNavOptions}
     />
   </PlacesStackNavigator.Navigator>
 );
