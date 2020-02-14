@@ -43,6 +43,15 @@ const PlacesListScreen = props => {
 export const PlacesListScreenNavOptions = navData => {
   return {
     headerTitle: "All Places",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+          onPress={() => navData.navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

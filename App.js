@@ -10,7 +10,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { PlacesNavigator } from "./navigation/PlacesNavigator";
+import { MainNavigator } from "./navigation/MainNavigator";
 
 import rootReducer from "./store/reducers";
 import { init } from "./helpers/db";
@@ -43,7 +43,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <PlacesNavigator />
+        <MainNavigator />
       </NavigationContainer>
     </Provider>
   );
