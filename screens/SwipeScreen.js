@@ -1,19 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import PlainText from "../components/PlainText";
 import HeaderButton from "../components/HeaderButton";
+import Swipe from "../components/Swipe";
 
-const SwipeScreen = props => {
-  return (
-    <View>
-      <PlainText>Swipe screen</PlainText>
-    </View>
-  );
-};
+class SwipeScreen extends Component {
+  render() {
+    return (
+      <View style={styles.screen}>
+        <PlainText>Swipe screen</PlainText>
+        <Swipe />
+      </View>
+    );
+  }
+}
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: "orange",
+  },
+});
 
 export const SwipeScreenNavOptions = navData => ({
   headerTitle: "Swipe Gestures",
